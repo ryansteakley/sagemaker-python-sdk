@@ -107,7 +107,10 @@ from sagemaker.workflow.entities import PipelineVariable
 from sagemaker.workflow.parameters import ParameterString
 from sagemaker.workflow.pipeline_context import PipelineSession, runnable_by_pipeline
 
-from sagemaker.mlflow.forward_sagemaker_metrics import log_sagemaker_job_to_mlflow
+try:
+    from sagemaker.mlflow.forward_sagemaker_metrics import log_sagemaker_job_to_mlflow
+except ImportError:
+    raise ValueError("Unable to import mlflow, check if sagemaker-mlflow is installed.")
 
 logger = logging.getLogger(__name__)
 
